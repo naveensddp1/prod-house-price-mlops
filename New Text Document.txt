@@ -1,7 +1,0 @@
-echo "# prod-house-price-mlops" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/naveensddp1/prod-house-price-mlops.git
-git push -u origin main
