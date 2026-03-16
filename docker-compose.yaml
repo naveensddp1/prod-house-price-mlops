@@ -1,0 +1,18 @@
+services:
+  model:
+      image:  rahil-mlops-fastapi:latest
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - 8000:8000
+
+  streamlit: 
+      image:  rahil-mlops-streamlit:latest
+      build:
+        context: ./streamlit_app
+        dockerfile: Dockerfile
+      ports:
+        - 8501:8501
+      environment:
+        API_URL: http://model:8000
