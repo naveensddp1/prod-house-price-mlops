@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'deployment/eks-terraform/**'
-
+  workflow_dispatch: {}
 jobs:
   terraform:
     runs-on: ubuntu-latest
