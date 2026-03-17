@@ -1,11 +1,11 @@
 name: kube-deploy
 on:
   workflow_dispatch: {}
-  push:
-    branches:
-      - main
-    paths:
-      - 'deployment/**'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'deployment/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
