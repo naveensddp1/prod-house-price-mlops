@@ -1,0 +1,23 @@
+name: kube-deploy
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+    paths:
+      - 'deployment/**'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -R -f deployment/
