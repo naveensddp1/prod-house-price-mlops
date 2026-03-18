@@ -49,13 +49,14 @@ jobs:
 
       - name: Install ArgoCD
         run: |
-          kubectl create namespace argocd || true
+          # kubectl create namespace argocd || true
 
           helm repo add argo https://argoproj.github.io/argo-helm
           helm repo update
 
           helm upgrade --install argocd argo/argo-cd \
             --namespace argocd \
+            --create-namespace \
             --set server.service.type=LoadBalancer
 
       - name: Get ArgoCD Initial Admin Password
@@ -66,13 +67,14 @@ jobs:
 
       - name: Install Traefik
         run: |
-          kubectl create namespace traefik || true
+          # kubectl create namespace traefik || true
 
           helm repo add traefik https://traefik.github.io/charts
           helm repo update
 
           helm upgrade --install traefik traefik/traefik \
             --namespace traefik \
+            --create-namespace \
             --set service.type=LoadBalancer
 
       - name: Get Services
