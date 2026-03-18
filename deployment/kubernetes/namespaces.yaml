@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mlflow-service
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mlflow-tracking-server
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: model
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: streamlit
