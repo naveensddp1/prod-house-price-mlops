@@ -58,7 +58,11 @@ jobs:
             --namespace argocd \
             --set server.service.type=LoadBalancer
 
-
+      - name: Get ArgoCD Initial Admin Password
+        run: |
+          kubectl get secret argocd-initial-admin-secret \
+            -n argocd \
+            -o jsonpath="{.data.password}" | base64 -d
 
       - name: Install Traefik
         run: |
