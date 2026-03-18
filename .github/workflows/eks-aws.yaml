@@ -38,6 +38,42 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region ap-south-1 \
+            --name demo-eks
 
-# aws eks update-kubeconfig --region ap-south-1 --name demo-eks
-# kubectl get nodes
+      - name: Setup Helm
+        uses: azure/setup-helm@v4
+
+      - name: Install ArgoCD
+        run: |
+          kubectl create namespace argocd || true
+
+          helm repo add argo https://argoproj.github.io/argo-helm
+          helm repo update
+
+          helm install argocd argo/argo-cd \
+            --namespace argocd \
+            --set server.service.type=LoadBalancer
+
+
+
+      - name: Install Traefik
+        run: |
+          kubectl create namespace traefik || true
+
+          helm repo add traefik https://traefik.github.io/charts
+          helm repo update
+
+          helm install traefik traefik/traefik \
+            --namespace traefik \
+            --set service.type=LoadBalancer
+
+      - name: Get Services
+        run: kubectl get svc -A
+
+
+  # aws eks update-kubeconfig --region ap-south-1 --name demo-eks
+  # kubectl get nodes
