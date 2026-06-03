@@ -41,7 +41,7 @@ jobs:
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig \
-            --region ap-south-1 \
+            --region ${{ vars.AWS_REGION }} \
             --name demo-eks
 
       - name: Setup Helm
