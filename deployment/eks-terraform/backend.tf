@@ -3,6 +3,6 @@ terraform {
     bucket         = "naveen-eks-tf-state"
     key            = "eks/terraform.tfstate"
     region         = "us-east-1"
-    use_lockfile = "terraform-state-lock-table"
+    dynamodb_table  = "terraform-state-lock-table"
   }
 }
