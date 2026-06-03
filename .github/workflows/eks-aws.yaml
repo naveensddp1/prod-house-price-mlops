@@ -3,7 +3,7 @@ name: EKS Terraform Deploy
 on:
   push:
     branches:
-      - main
+      - rahil-eks-karpenter-argocd
     paths:
       - 'deployment/eks-terraform/**'
   workflow_dispatch: {}
